@@ -55,6 +55,8 @@ group :development, :test do
   gem "rspec-rails", "~> 8.0.0"
   gem "capybara"
   gem "simplecov", require: false
+  gem "factory_bot_rails"
+  gem 'shoulda-matchers', '~> 6.0'
 end
 
 group :development do
