@@ -15,7 +15,14 @@
           1,
           null,
           null,
+          1,
+          1,
           null,
+          1,
+          1,
+          null,
+          1,
+          1,
           1,
           null
         ]
@@ -30,20 +37,30 @@
       "/home/pedro/programacao/mobits/bankits/app/controllers/application_controller.rb": {
         "lines": [
           1,
+          1,
           null,
           1,
+          null,
+          1,
+          null,
+          1,
+          12,
+          null,
           null
         ]
       },
-      "/home/pedro/programacao/mobits/bankits/app/controllers/home_controller.rb": {
+      "/home/pedro/programacao/mobits/bankits/app/controllers/statements_controller.rb": {
         "lines": [
-          0,
-          0,
-          0
-        ],
-        "branches": {}
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1749567878
+    "timestamp": 1749581330
   }
 }
