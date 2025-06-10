@@ -24,6 +24,14 @@
 
   <body>
     <div>
+      <h1>Bankits</h1>
+    </div>
+    <nav>
+      <% if user_signed_in? %>
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete%>
+      <% end %>
+    </nav>
+    <div>
       <p class="notice" style="color: LimeGreen;"><%= notice %></p>
       <p class="alert" style="color: red;"><%= alert %></p>
       <%= yield %>
