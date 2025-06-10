@@ -7,6 +7,26 @@
           null
         ]
       },
+      "/home/pedro/programacao/mobits/bankits/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/home/pedro/programacao/mobits/bankits/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/home/pedro/programacao/mobits/bankits/app/controllers/home_controller.rb": {
         "lines": [
           1,
@@ -21,16 +41,8 @@
           1,
           null
         ]
-      },
-      "/home/pedro/programacao/mobits/bankits/app/models/application_record.rb": {
-        "lines": [
-          0,
-          0,
-          0
-        ],
-        "branches": {}
       }
     },
-    "timestamp": 1749501218
+    "timestamp": 1749562587
   }
 }
