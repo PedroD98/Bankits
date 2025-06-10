@@ -27,13 +27,6 @@
           null
         ]
       },
-      "/home/pedro/programacao/mobits/bankits/app/controllers/home_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
       "/home/pedro/programacao/mobits/bankits/app/controllers/application_controller.rb": {
         "lines": [
           1,
@@ -41,8 +34,16 @@
           1,
           null
         ]
+      },
+      "/home/pedro/programacao/mobits/bankits/app/controllers/home_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {}
       }
     },
-    "timestamp": 1749562587
+    "timestamp": 1749567878
   }
 }

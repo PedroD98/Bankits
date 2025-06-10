@@ -23,6 +23,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div>
+      <p class="notice" style="color: LimeGreen;"><%= notice %></p>
+      <p class="alert" style="color: red;"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
