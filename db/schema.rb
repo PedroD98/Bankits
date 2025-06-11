@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_11_115838) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_11_155010) do
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "receiver_id"
+    t.integer "counterparty_id"
     t.datetime "processed_at", null: false
     t.integer "transaction_type", default: 0, null: false
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "value_cents", default: 0, null: false
-    t.index ["receiver_id"], name: "index_transactions_on_receiver_id"
+    t.index ["counterparty_id"], name: "index_transactions_on_counterparty_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -41,5 +41,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_115838) do
   end
 
   add_foreign_key "transactions", "users"
-  add_foreign_key "transactions", "users", column: "receiver_id"
+  add_foreign_key "transactions", "users", column: "counterparty_id"
 end

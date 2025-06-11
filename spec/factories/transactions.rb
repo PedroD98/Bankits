@@ -20,7 +20,7 @@ FactoryBot.define do
     trait :transfer do
       transaction_type { :transfer_sent }
       description { 'Transferência enviada' }
-      association :receiver, factory: :user
+      association :counterparty, factory: :user
     end
   end
 end

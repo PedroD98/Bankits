@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
   belongs_to :user
-  belongs_to :receiver, class_name: 'User', optional: true
+  belongs_to :counterparty, class_name: 'User', optional: true
   enum :transaction_type, {
     deposit: 0,
     withdraw: 1,
@@ -11,6 +11,6 @@ class Transaction < ApplicationRecord
   }
   monetize :value_cents
 
-  validates :receiver, presence: true, if: -> { transfer_sent? || transfer_received? }
+  validates :counterparty, presence: true, if: -> { transfer_sent? || transfer_received? }
   validates :description, :processed_at, presence: true
 end

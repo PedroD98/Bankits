@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "transactions/create"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -22,4 +23,13 @@ Rails.application.routes.draw do
   end
 
   resources :statements, only: %i[index]
+
+  resources :transactions, only: [] do
+    collection do
+      post :deposit
+      post :withdraw
+      post :manager_visit
+      post :transfer
+    end
+  end
 end

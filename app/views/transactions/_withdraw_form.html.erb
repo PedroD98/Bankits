@@ -1,0 +1,10 @@
+<%= form_with url: withdraw_transactions_path do |f| %>
+  <div class="field">
+    <%= label_tag :value,t('activerecord.attributes.transaction.value'), class: "form-label" %>
+    <%= f.number_field :value, class: "form-control", step: "0.01", placeholder: "0.00" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('statements.index.withdraw'), class: "btn btn-primary mt-3" %>
+  </div>
+<% end %>

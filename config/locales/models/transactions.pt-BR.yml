@@ -4,13 +4,10 @@ pt-BR:
       transaction: Transação
     attributes:
       transaction:
-        user: Remetente
-        receiver: Destinatário
+        counterparty: Contraparte
+        counterparty_id: Contraparte
         value_cents: Valor
+        value: Valor (R$)
         description: Descrição
         processed_at: Data
         transaction_type: Tipo de transação
-    errors:
-      models:
-        transaction:
-          attributes:

@@ -1,0 +1,14 @@
+pt-BR:
+  layouts:
+    application:
+      hello: Olá
+      sign_out: Sair
+  statements:
+    index:
+      balance: Saldo
+      make_deposit: Realizar Depósito
+      make_withdraw: Realizar Saque
+      deposit: Depositar
+      withdraw: Sacar
+      no_transactions: Você ainda não possui transações
+      start_suggestion: Que tal começar com um depósito?

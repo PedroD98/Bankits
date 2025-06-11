@@ -26,19 +26,15 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <%# O link principal com a marca da sua aplicação %>
           <%= link_to 'Bankits', root_path, class: 'navbar-brand' %>
           
-          <%# Itens da navbar que ficarão à direita %>
           <div class="navbar-nav ms-auto align-items-center">
             <% if user_signed_in? %>
-              <%# Mostra uma saudação e o botão de sair se o usuário estiver logado %>
               <span class="navbar-text text-white me-3">
-                Olá, <%= current_user.first_name %>
+                <%= t('.hello') %>, <%= current_user.first_name %>
               </span>
-              <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-outline-light btn-sm' %>
+              <%= button_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'btn btn-outline-light btn-sm' %>
             <% else %>
-              <%# Mostra os links de Login/Cadastro para visitantes %>
               <%= link_to 'Inscrever-se', new_user_registration_path, class: 'nav-link' %>
               <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
             <% end %>
