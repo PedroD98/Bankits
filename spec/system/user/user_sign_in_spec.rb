@@ -11,6 +11,21 @@ describe 'User signs in', type: :system do
     expect(page).to have_button 'Login'
   end
 
+  it 'and must fill every form field' do
+    User.create!(first_name: 'Pedro', last_name: 'Ivo',
+                 acc_number: '43353', password: '1111', balance_cents: 4599)
+
+    visit root_path
+    fill_in 'Número da conta', with: ''
+    fill_in 'Senha', with: ''
+    within 'form' do
+      click_on 'Login'
+    end
+
+    expect(page).to have_content 'Número da conta ou senha inválidos.'
+    expect(page).not_to have_button 'Sair'
+  end
+
   it 'with success' do
     User.create!(first_name: 'Pedro', last_name: 'Ivo',
                  acc_number: '43353', password: '1111', balance_cents: 4599)
@@ -18,7 +33,9 @@ describe 'User signs in', type: :system do
     visit root_path
     fill_in 'Número da conta', with: '43353'
     fill_in 'Senha', with: '1111'
-    click_on 'Login'
+    within 'form' do
+      click_on 'Login'
+    end
 
     expect(current_path).to eq root_path
     expect(page).to have_content 'Bankits'

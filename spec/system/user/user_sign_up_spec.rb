@@ -19,7 +19,9 @@ describe 'User creates account', type: :system do
     fill_in 'Sobrenome', with: ''
     fill_in 'Número da conta', with: ''
     fill_in 'Senha', with: ''
-    click_on 'Inscrever-se'
+    within 'form' do
+      click_on 'Inscrever-se'
+    end
 
     expect(page).to have_content 'Nome não pode ficar em branco'
     expect(page).to have_content 'Sobrenome não pode ficar em branco'
@@ -35,7 +37,9 @@ describe 'User creates account', type: :system do
     fill_in 'Número da conta', with: '199F8'
     fill_in 'Senha', with: '443R'
     fill_in 'Confirme sua senha', with: '443R'
-    click_on 'Inscrever-se'
+    within 'form' do
+      click_on 'Inscrever-se'
+    end
 
     expect(page).to have_content 'Nome deve conter apenas letras e espaços'
     expect(page).to have_content 'Sobrenome deve conter apenas letras e espaços'
@@ -51,7 +55,9 @@ describe 'User creates account', type: :system do
     fill_in 'Número da conta', with: '19984'
     fill_in 'Senha', with: '4435'
     fill_in 'Confirme sua senha', with: '4435'
-    click_on 'Inscrever-se'
+    within 'form' do
+      click_on 'Inscrever-se'
+    end
 
     expect(current_path).to eq root_path
     expect(User.count).to eq 1
