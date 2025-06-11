@@ -5,15 +5,13 @@ RSpec.describe User, type: :model do
     subject { build(:user) }
     it { should validate_presence_of(:first_name) }
     it { should validate_presence_of(:last_name) }
-
     it { should define_enum_for(:user_type).with_values(regular: 0, vip: 2) }
-
     it { should validate_presence_of(:acc_number) }
     it { should validate_uniqueness_of(:acc_number).case_insensitive }
-
     it { should validate_numericality_of(:balance_cents) }
-
     it { should validate_presence_of(:password) }
+    it { should have_many(:transactions) }
+
 
     context 'acc_number format' do
       it { should allow_value('12345').for(:acc_number) }

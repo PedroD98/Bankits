@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      transaction: Transação
+    attributes:
+      transaction:
+        user: Remetente
+        receiver: Destinatário
+        value_cents: Valor
+        description: Descrição
+        processed_at: Data
+        transaction_type: Tipo de transação
+    errors:
+      models:
+        transaction:
+          attributes:

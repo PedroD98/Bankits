@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_10_163932) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_11_115838) do
+  create_table "transactions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "receiver_id"
+    t.datetime "processed_at", null: false
+    t.integer "transaction_type", default: 0, null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "value_cents", default: 0, null: false
+    t.index ["receiver_id"], name: "index_transactions_on_receiver_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "acc_number", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -26,4 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_10_163932) do
     t.index ["acc_number"], name: "index_users_on_acc_number", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "transactions", "users"
+  add_foreign_key "transactions", "users", column: "receiver_id"
 end

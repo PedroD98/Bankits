@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   enum :user_type, { regular: 0, vip: 2 }
   monetize :balance_cents
+  has_many :transactions
 
   devise :database_authenticatable, :registerable,
          :rememberable, authentication_keys: [:acc_number]
@@ -14,4 +15,9 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :password, confirmation: true, on: :create
   validates :password, format: { with: /\A\d{4}\z/ }
+
+
+  def full_name
+    first_name + ' ' + last_name
+  end
 end

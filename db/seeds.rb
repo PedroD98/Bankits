@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+puts 'Seeds: creating users...'
+User.create!(first_name: 'Pedro', last_name: 'Ivo', acc_number: '12345',
+             password: '1111', balance_cents: 1250)
+
+
+User.create!(first_name: 'Ana', last_name: 'Maria', acc_number: '54321',
+             password: '2222', balance_cents: 5000, user_type: 2)
