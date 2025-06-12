@@ -1,5 +1,5 @@
 class WithdrawService < ApplicationService
-  attr_accessor :withdraw_transaction
+  attr_reader :withdraw_transaction
 
   def initialize(user:, value_param:)
     @user = user
@@ -10,12 +10,21 @@ class WithdrawService < ApplicationService
   def call
     amount = sanitize_and_validate_value(value_param: @value_param, transaction: @withdraw_transaction)
     return false unless amount
+    return false unless verify_user_balance(amount)
     amount *= -1
     set_attributes_to_withdraw(amount)
     update_records(amount)
   end
 
   private
+
+  def verify_user_balance(amount)
+    if Money.from_amount(amount, @user.balance.currency) > @user.balance && @user.regular?
+      @withdraw_transaction.errors.add(:base, 'Saldo insuficiente.')
+      return false
+    end
+    true
+  end
 
   def set_attributes_to_withdraw(amount)
     @withdraw_transaction.attributes = {

@@ -59,7 +59,7 @@ describe 'User makes a depoist', type: :system do
     expect(user.transactions.first.value_cents).to eq 999
   end
 
-  it 'should update user balance' do
+  it 'and their balance is updated' do
     user = create(:user, balance_cents: 1000)
 
     login_as user

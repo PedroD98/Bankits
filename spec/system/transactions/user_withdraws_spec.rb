@@ -43,6 +43,21 @@ describe 'User withdraws', type: :system do
   end
 
 
+  it 'and value can not be greater than balance if user_type is regular' do
+    user = create(:user, balance_cents: 998)
+
+    login_as user
+    visit root_path
+    within '#withdraw_value_field' do
+      fill_in 'Valor (R$)', with: 9.99
+    end
+    click_on 'Sacar'
+
+    expect(page).to have_content 'Falha ao realizar saque'
+    expect(page).to have_content 'Saldo insuficiente.'
+    expect(Transaction.all.count).to eq 0
+  end
+
   it 'with success' do
     user = create(:user, balance_cents: 1000)
 
@@ -59,7 +74,7 @@ describe 'User withdraws', type: :system do
     expect(user.transactions.first.value_cents).to eq(-999)
   end
 
-  it 'should update user balance' do
+  it 'and their balance is updated' do
     user = create(:user, balance_cents: 1000)
 
     login_as user

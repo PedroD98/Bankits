@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
   describe 'validations' do
-    subject { build(:transaction) }
     it { should belong_to(:user) }
     it { should belong_to(:counterparty).class_name('User').optional }
     it { should validate_presence_of(:description) }
@@ -36,6 +35,12 @@ RSpec.describe Transaction, type: :model do
   describe 'deposit validations' do
     subject { build(:transaction, transaction_type: :deposit) }
     it { should validate_numericality_of(:value_cents).is_greater_than(0) }
+    it { should_not validate_presence_of(:counterparty) }
+  end
+
+  describe 'withdraw validations' do
+    subject { build(:transaction, transaction_type: :withdraw) }
+    it { should validate_numericality_of(:value_cents).is_less_than(0) }
     it { should_not validate_presence_of(:counterparty) }
   end
 end
