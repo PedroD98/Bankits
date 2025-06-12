@@ -48,7 +48,6 @@ describe 'User makes a depoist', type: :system do
 
     login_as user
     visit root_path
-    save_page
     within '#deposit_value_field' do
       fill_in 'Valor (R$)', with: 9.99
     end
@@ -65,7 +64,6 @@ describe 'User makes a depoist', type: :system do
 
     login_as user
     visit root_path
-    save_page
     within '#deposit_value_field' do
       fill_in 'Valor (R$)', with: 9.99
     end
