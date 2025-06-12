@@ -3,7 +3,7 @@ FactoryBot.define do
     user
     value_cents { rand(1000..50000) }
     processed_at { Time.current }
-    description { 'Depósito em conta' }
+    description { 'DEPÓSITO' }
     transaction_type { :deposit }
 
     trait :withdraw do

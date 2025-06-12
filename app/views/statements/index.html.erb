@@ -20,9 +20,9 @@
 
   <div class="col-md-9">
     <h3 class="text-center">Extrato</h3>
-    <% if current_user.transactions.any? %>
+    <% if @transactions.any? %>
       <ul class="list-group">
-        <% current_user.transactions.each do |transaction| %>
+        <% @transactions.each do |transaction| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <div>
                 <strong><%= transaction.description %></strong>

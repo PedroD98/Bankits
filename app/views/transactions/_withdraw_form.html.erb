@@ -1,6 +1,8 @@
-<%= form_with url: withdraw_transactions_path do |f| %>
-  <div class="field">
-    <%= label_tag :value,t('activerecord.attributes.transaction.value'), class: "form-label" %>
+<%= form_with model: @withdraw_transaction, url: withdraw_transactions_path do |f| %>
+ <%= render 'shared/transaction_form_errors', object: f.object %>
+
+  <div id="withdraw_value_field" class="field">
+    <%= f.label :value, "#{t('activerecord.attributes.transaction.value')} (#{t('number.currency.format.unit')})", class: "form-label" %>
     <%= f.number_field :value, class: "form-control", step: "0.01", placeholder: "0.00" %>
   </div>
 

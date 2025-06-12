@@ -7,7 +7,7 @@ pt-BR:
         counterparty: Contraparte
         counterparty_id: Contraparte
         value_cents: Valor
-        value: Valor (R$)
+        value: Valor
         description: Descrição
         processed_at: Data
         transaction_type: Tipo de transação

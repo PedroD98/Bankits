@@ -1,0 +1,6 @@
+pt-BR:
+  transactions:
+    deposit:
+      success: Depósito realizado com sucesso!
+      error: Falha ao realizar depósito.
+      deposit_description: DEPÓSITO

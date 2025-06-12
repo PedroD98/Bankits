@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, authentication_keys: [:acc_number]
 
+  validates :balance_cents, presence: true
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, format: { with: /\A[\p{L}\s'-]+\z/ }
 
@@ -14,7 +15,7 @@ class User < ApplicationRecord
 
   validates :password, presence: true, on: :create
   validates :password, confirmation: true, on: :create
-  validates :password, format: { with: /\A\d{4}\z/ }
+  validates :password, format: { with: /\A\d{4}\z/ }, on: :create
 
 
   def full_name
