@@ -1,4 +1,13 @@
-<h2><%= t('.balance') %>: <%= @user.balance.format %></h2>
+<div>
+  <% if @user.balance < 0 && @user.vip? %>
+    <p class="text-muted"><%= t('.bank_interest_message')%></p>
+  <% end %>
+  <h2 class="<%= balance_text_color_class(@user.balance) %>">
+    <%= t('.balance') %>: <%= @user.balance.format %>
+  </h2>
+  
+</div>
+
 
 <div class="row mt-4">
 
