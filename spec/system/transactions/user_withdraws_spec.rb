@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe 'User withdraws', type: :system do
+  it 'and must be logged in' do
+    visit statements_path
+
+    expect(current_path).to eq new_user_session_path
+    expect(page).to have_content 'Para continuar, faça login ou registre-se.'
+  end
+
   it 'And form exists' do
     user = create(:user)
 
@@ -23,7 +30,7 @@ describe 'User withdraws', type: :system do
     click_on 'Sacar'
 
     expect(page).to have_content 'Falha ao realizar saque'
-    expect(page).to have_content 'Valor deve ser positivo'
+    expect(page).to have_content 'Valor deve ser inserido'
     expect(Transaction.all.count).to eq 0
   end
 

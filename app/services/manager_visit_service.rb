@@ -11,7 +11,6 @@ class ManagerVisitService < ApplicationService
     validate_user_type
     validate_scheduled_visit_date
     return false if @manager_visit_transaction.errors.any?
-    set_attributes_to_manage_visit
     update_records
   end
 
@@ -34,23 +33,13 @@ class ManagerVisitService < ApplicationService
     end
   end
 
-  def set_attributes_to_manage_visit
-    @manager_visit_transaction.attributes = {
-      value: -50,
-      transaction_type: :manager_visit,
-      description: "VISITA GERENCIAL AGENDADA PARA #{I18n.l(@scheduled_visit_date_param)}",
-      scheduled_visit_date: @scheduled_visit_date_param,
-      processed_at: Time.current
-    }
-  end
 
   def update_records
     begin
       ActiveRecord::Base.transaction do
         @user.lock!
-        new_balance = @user.balance + @manager_visit_transaction.value
-        @user.update!(balance: new_balance)
-        @manager_visit_transaction.save!
+        @user.update!(balance: calculate_new_balance)
+        create_manage_visit
       end
       true
 
@@ -59,5 +48,20 @@ class ManagerVisitService < ApplicationService
       @manager_visit_transaction.errors.merge!(e.record.errors)
       false
     end
+  end
+
+  def calculate_new_balance
+    @user.balance - Money.from_amount(50, @user.balance.currency)
+  end
+
+  def create_manage_visit
+    @manager_visit_transaction.attributes = {
+      value: -50,
+      transaction_type: :manager_visit,
+      description: "VISITA GERENCIAL AGENDADA PARA #{I18n.l(@scheduled_visit_date_param)}",
+      scheduled_visit_date: @scheduled_visit_date_param,
+      processed_at: Time.current
+    }
+    @manager_visit_transaction.save!
   end
 end

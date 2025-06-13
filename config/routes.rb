@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   end
   get 'manager_visit/new', to: 'transactions#new_manager_visit', as: 'new_manager_visit'
   post 'manager_visit', to: 'transactions#create_manager_visit', as: 'manager_visit'
+  resources :transfers, only: %i[create]
 end

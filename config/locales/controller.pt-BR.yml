@@ -9,3 +9,7 @@ pt-BR:
     create_manager_visit:
       success: Visita agendada com sucesso!
       error: Falha ao agendar visita.
+  transfers:
+    create:
+      success: Transferência realizada com sucesso!
+      error: Falha ao realizar transferência.

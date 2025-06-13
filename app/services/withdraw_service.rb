@@ -8,40 +8,29 @@ class WithdrawService < ApplicationService
   end
 
   def call
-    amount = sanitize_and_validate_value(value_param: @value_param, transaction: @withdraw_transaction)
-    return false unless amount
-    return false unless verify_user_balance(amount)
-    amount *= -1
-    set_attributes_to_withdraw(amount)
-    update_records(amount)
+    @amount = sanitize_and_validate_value(value_param: @value_param, transaction: @withdraw_transaction)
+    return false unless @amount
+    verify_user_balance if @user.regular?
+    return false if @withdraw_transaction.errors.any?
+    @amount *= -1
+    update_records
   end
 
   private
 
-  def verify_user_balance(amount)
-    if Money.from_amount(amount, @user.balance.currency) > @user.balance && @user.regular?
+  def verify_user_balance
+    if Money.from_amount(@amount, @user.balance.currency) > @user.balance
       @withdraw_transaction.errors.add(:base, 'Saldo insuficiente.')
-      return false
     end
-    true
   end
 
-  def set_attributes_to_withdraw(amount)
-    @withdraw_transaction.attributes = {
-      value: amount,
-      transaction_type: :withdraw,
-      description: 'SAQUE',
-      processed_at: Time.current
-    }
-  end
-
-  def update_records(amount)
+  def update_records
     begin
       ActiveRecord::Base.transaction do
         @user.lock!
-        new_balance = @user.balance + Money.from_amount(amount, @user.balance.currency)
+        new_balance = @user.balance + Money.from_amount(@amount, @user.balance.currency)
         @user.update!(balance: new_balance)
-        @withdraw_transaction.save!
+        create_withdraw
       end
       true
 
@@ -50,5 +39,15 @@ class WithdrawService < ApplicationService
       @withdraw_transaction.errors.merge!(e.record.errors)
       false
     end
+  end
+
+  def create_withdraw
+    @withdraw_transaction.attributes = {
+      value: @amount,
+      transaction_type: :withdraw,
+      description: 'SAQUE',
+      processed_at: Time.current
+    }
+    @withdraw_transaction.save!
   end
 end

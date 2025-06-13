@@ -3,23 +3,30 @@
 <div class="row mt-4">
 
   <div class="col-md-3">
-    <div class="card mb-5 text-bg-success">
+    <div id="deposit_card" class="card mb-5 text-bg-success">
       <div class="card-body">
         <h5 class="card-title"><%= t('.make_deposit') %></h5>
         <%= render 'transactions/deposit_form'%>
       </div>
     </div>
 
-    <div class="card text-bg-danger">
+    <div id="withdraw_card" class="card mb-5 text-bg-danger">
       <div class="card-body">
         <h5 class="card-title"><%= t('.make_withdraw') %></h5>
         <%= render 'transactions/withdraw_form'%>
       </div>
     </div>
+
+    <div id="transfer_card" class="card mb-5 text-bg-secondary">
+      <div class="card-body">
+        <h5 class="card-title"><%= t('.make_transfer') %></h5>
+        <%= render 'transactions/transfer/transfer_form'%>
+      </div>
+    </div>
   </div>
 
   <div class="col-md-9">
-    <h3 class="text-center">Extrato</h3>
+    <h3 class="text-center"><%= t('.bank_statement') %></h3>
     <% if @transactions.any? %>
       <ul class="list-group list-group-striped">
         <% @transactions.each do |transaction| %>
@@ -28,8 +35,8 @@
                 <strong><%= transaction.description %></strong>
                 <small class="text-muted"><%= l(transaction.processed_at, format: :brazilian) %></small>
             </div>
-            <span class="fw-bold <%= transaction.value_cents.positive? ? 'text-success' : 'text-danger'%>">
-                <%= transaction.value.format %>
+            <span class="fw-bold <%= transaction_value_color_class(transaction) %>">
+                <%= transaction_value_text_format(transaction.value) %>
             </span>
           </li>
         <% end %>

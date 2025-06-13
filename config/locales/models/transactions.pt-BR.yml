@@ -1,10 +1,13 @@
 pt-BR:
   activerecord:
     models:
-      transaction: Transação
+      transaction:
+        one: Transação
+        other: Transações
     attributes:
       transaction:
         counterparty: Contraparte
+        counterparty_acc_number: Número da conta
         counterparty_id: Contraparte
         value_cents: Valor
         value: Valor

@@ -17,9 +17,17 @@ FactoryBot.define do
       value_cents { 5000 }
     end
 
-    trait :transfer do
+    trait :transfer_sent do
       transaction_type { :transfer_sent }
-      description { 'Transferência enviada' }
+      description { 'TRANSFERÊNCIA RECEBIDA' }
+      value_cents { -5000 }
+      association :counterparty, factory: :user
+    end
+
+    trait :transfer_received do
+      transaction_type { :transfer_received }
+      description { "TRANSFERÊNCIA RECEBIDA" }
+      value_cents { 5000 }
       association :counterparty, factory: :user
     end
   end

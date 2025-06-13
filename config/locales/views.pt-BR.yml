@@ -7,11 +7,14 @@ pt-BR:
       sign_out: Sair
   statements:
     index:
+      bank_statement: Extrato
       balance: Saldo
       make_deposit: Realizar Depósito
       make_withdraw: Realizar Saque
+      make_transfer: Transferir
       deposit: Depositar
       withdraw: Sacar
+      transfer: Transferir
       no_transactions: Você ainda não possui transações
       start_suggestion: Que tal começar com um depósito?
   transactions:

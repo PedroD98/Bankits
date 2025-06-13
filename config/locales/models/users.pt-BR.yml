@@ -9,6 +9,9 @@ pt-BR:
         acc_number: Número da conta
         balance: Saldo
         user_type: Tipo de conta
+        transaction:
+          one: Transação
+          other: Transações
     errors:
       models:
         user:

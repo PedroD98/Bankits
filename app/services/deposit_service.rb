@@ -9,30 +9,20 @@ class DepositService < ApplicationService
   end
 
   def call
-    amount = sanitize_and_validate_value(value_param: @value_param, transaction: @deposit_transaction)
-    return false unless amount
-    set_attributes_to_deposit(amount)
-    update_records(amount)
+    @amount = sanitize_and_validate_value(value_param: @value_param, transaction: @deposit_transaction)
+    return false unless @amount
+    update_records
   end
 
   private
 
-  def set_attributes_to_deposit(amount)
-    @deposit_transaction.attributes = {
-      value: amount,
-      transaction_type: :deposit,
-      description: "DEPÓSITO",
-      processed_at: Time.current
-    }
-  end
-
-  def update_records(amount)
+  def update_records
     begin
       ActiveRecord::Base.transaction do
         @user.lock!
-        new_balance = @user.balance + Money.from_amount(amount, @user.balance.currency)
+        new_balance = @user.balance + Money.from_amount(@amount, @user.balance.currency)
         @user.update!(balance: new_balance)
-        @deposit_transaction.save!
+        create_deposit
       end
       true
 
@@ -41,5 +31,15 @@ class DepositService < ApplicationService
       @deposit_transaction.errors.merge!(e.record.errors)
       false
     end
+  end
+
+  def create_deposit
+    @deposit_transaction.attributes = {
+      value: @amount,
+      transaction_type: :deposit,
+      description: "DEPÓSITO",
+      processed_at: Time.current
+    }
+    @deposit_transaction.save!
   end
 end

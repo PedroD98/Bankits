@@ -14,4 +14,4 @@ User.create!(first_name: 'Pedro', last_name: 'Ivo', acc_number: '12345',
 
 
 User.create!(first_name: 'Ana', last_name: 'Maria', acc_number: '54321',
-             password: '2222', balance_cents: 5000, user_type: 2)
+             password: '1111', balance_cents: 5000, user_type: 2)

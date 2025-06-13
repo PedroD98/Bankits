@@ -65,7 +65,7 @@ describe 'Vip user schedule manager visit', type: :system do
   end
 
   it 'with success' do
-    user = create(:user, :vip)
+    user = create(:user, :vip, balance: 60)
 
     login_as user
     travel_to Time.zone.local(2000, 07, 15) do
@@ -74,8 +74,10 @@ describe 'Vip user schedule manager visit', type: :system do
       fill_in 'Data de agendamento da visita', with: '2000-07-16'
       click_on 'Confirmar agendamento'
 
+      user.reload
       expect(page).to have_content 'Visita agendada com sucesso!'
       expect(Transaction.all.count).to eq 1
+      expect(user.balance.format).to eq 'R$ 10,00'
     end
   end
 end

@@ -12,6 +12,7 @@ class TransactionsController < ApplicationController
       @transactions = @user.transactions.order(processed_at: :desc)
       @deposit_transaction = deposit_service.deposit_transaction
       @withdraw_transaction = Transaction.new
+      @transfer_transaction = Transaction.new
       render 'statements/index', status: :unprocessable_entity
     end
   end
@@ -25,6 +26,7 @@ class TransactionsController < ApplicationController
       flash.now[:alert] = t('transactions.withdraw.error')
       @transactions = @user.transactions.order(processed_at: :desc)
       @deposit_transaction = Transaction.new
+      @transfer_transaction = Transaction.new
       @withdraw_transaction = withdraw_service.withdraw_transaction
       render 'statements/index', status: :unprocessable_entity
     end

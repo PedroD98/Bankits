@@ -36,12 +36,14 @@ RSpec.describe Transaction, type: :model do
     subject { build(:transaction, transaction_type: :deposit) }
     it { should validate_numericality_of(:value_cents).is_greater_than(0) }
     it { should_not validate_presence_of(:counterparty) }
+    it { should_not validate_presence_of(:scheduled_visit_date) }
   end
 
   describe 'withdraw validations' do
     subject { build(:transaction, :withdraw) }
     it { should validate_numericality_of(:value_cents).is_less_than(0) }
     it { should_not validate_presence_of(:counterparty) }
+    it { should_not validate_presence_of(:scheduled_visit_date) }
   end
 
   describe 'manager_visit validations' do
@@ -49,5 +51,26 @@ RSpec.describe Transaction, type: :model do
     it { should validate_numericality_of(:value_cents).is_less_than(0) }
     it { should_not validate_presence_of(:counterparty) }
     it { should validate_presence_of(:scheduled_visit_date) }
+  end
+
+  describe 'transfer_sent validations' do
+    subject { build(:transaction, :transfer_sent) }
+    it { should validate_numericality_of(:value_cents).is_less_than(0) }
+    it { should validate_presence_of(:counterparty) }
+    it { should_not validate_presence_of(:scheduled_visit_date) }
+  end
+
+  describe 'transfer_received validations' do
+    subject { build(:transaction, :transfer_received) }
+    it { should validate_numericality_of(:value_cents).is_greater_than(0) }
+    it { should validate_presence_of(:counterparty) }
+    it { should_not validate_presence_of(:scheduled_visit_date) }
+  end
+
+  describe 'fee validations' do
+    subject { build(:transaction, :fee) }
+    it { should validate_numericality_of(:value_cents).is_less_than(0) }
+    it { should_not validate_presence_of(:counterparty) }
+    it { should_not validate_presence_of(:scheduled_visit_date) }
   end
 end

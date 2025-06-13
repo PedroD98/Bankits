@@ -6,5 +6,6 @@ class StatementsController < ApplicationController
     @transactions = @user.transactions.order(processed_at: :desc)
     @deposit_transaction = Transaction.new
     @withdraw_transaction = Transaction.new
+    @transfer_transaction = Transaction.new
   end
 end
