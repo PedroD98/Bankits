@@ -23,15 +23,8 @@ Rails.application.routes.draw do
   end
 
   resources :statements, only: %i[index]
-
-  resources :transactions, only: [] do
-    collection do
-      post :deposit
-      post :withdraw
-      post :transfer
-    end
-  end
-  get 'manager_visit/new', to: 'transactions#new_manager_visit', as: 'new_manager_visit'
-  post 'manager_visit', to: 'transactions#create_manager_visit', as: 'manager_visit'
+  resources :deposits, only: %i[create]
+  resources :withdrawals, only: %i[create]
   resources :transfers, only: %i[create]
+  resources :manager_visits, only: %i[new create]
 end

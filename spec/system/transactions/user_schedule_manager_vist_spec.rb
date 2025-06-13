@@ -19,6 +19,16 @@ describe 'Vip user schedule manager visit', type: :system do
     expect(page).not_to have_link 'Visita gerencial'
   end
 
+  it 'and modal can not be accessed by regular users' do
+    user = create(:user, user_type: :regular)
+
+    login_as user
+    visit new_manager_visit_path
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Essa funcionalidade só é permitida para usuários vips.'
+  end
+
   it 'and schedule form exists' do
     user = create(:user, :vip)
 

@@ -25,3 +25,11 @@ pt-BR:
       scheduled_visit_date: Data da visita
       cancel_visit: Cancelar
       confirm_visit: Confirmar agendamento
+  manager_visits:
+    new:
+      scheduled_manager_visit: Agendamento de visita gerencial
+      manager_visit_fee: Uma taxa de R$ 50,00 será debitada da sua conta
+      scheduled_visit_date: Data da visita
+      cancel_visit: Cancelar
+      confirm_visit: Confirmar agendamento
+

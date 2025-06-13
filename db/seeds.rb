@@ -1,20 +1,23 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 
 puts 'Seeds: creating users...'
-User.create!(first_name: 'Pedro', last_name: 'Ivo', acc_number: '12345',
-             password: '1111', balance: 50)
 
+User.find_or_create_by!(acc_number: '12345') do |user|
+  user.first_name = 'Pedro'
+  user.last_name = 'Ivo'
+  user.password = '1111'
+  user.password_confirmation = '1111'
+  user.user_type = :regular
+  user.balance = 50
+end
 
-User.create!(first_name: 'Ana', last_name: 'Maria', acc_number: '54321',
-             password: '1111', balance: 1000, user_type: 2)
+User.find_or_create_by!(acc_number: '54321') do |user|
+  user.first_name = 'Ana'
+  user.last_name = 'Maria'
+  user.password = '1111'
+  user.password_confirmation = '1111'
+  user.user_type = :vip
+  user.balance = 1000
+end
 
-User.create!(first_name: 'Ana', last_name: 'Maria', acc_number: '22222',
-             password: '1111', balance: 1000, user_type: 2)
+puts 'Seeds: complete!'
+puts 'Check see db/seeds.rb for users login details'

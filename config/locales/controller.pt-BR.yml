@@ -1,14 +1,14 @@
 pt-BR:
-  transactions:
-    deposit:
-      success: Depósito realizado com sucesso!
-      error: Falha ao realizar depósito.
-    withdraw:
-      success: Saque realizado com sucesso!
-      error: Falha ao realizar saque.
-    create_manager_visit:
-      success: Visita agendada com sucesso!
-      error: Falha ao agendar visita.
+  deposits:
+    success: Depósito realizado com sucesso!
+    error: Falha ao realizar depósito.
+  withdrawals:
+    success: Saque realizado com sucesso!
+    error: Falha ao realizar saque.
+  manager_visits:
+    success: Visita agendada com sucesso!
+    error: Falha ao agendar visita.
+    invalid_user_message: Essa funcionalidade só é permitida para usuários vips.
   transfers:
     create:
       success: Transferência realizada com sucesso!
