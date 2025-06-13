@@ -17,7 +17,7 @@ pt-BR:
       transfer: Transferir
       no_transactions: Você ainda não possui transações
       start_suggestion: Que tal começar com um depósito?
-      bank_interest_message: Será aplicada uma taxa de 0,1% por minuto sobre o valor do saldo
+      bank_interest_message: Seu saldo está negativo. Uma taxa de 0.1% por minuto será aplicada sobre este valor até que seja regularizado.
   transactions:
     new_manager_visit:
       scheduled_manager_visit: Agendamento de visita gerencial

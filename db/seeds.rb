@@ -10,8 +10,11 @@
 
 puts 'Seeds: creating users...'
 User.create!(first_name: 'Pedro', last_name: 'Ivo', acc_number: '12345',
-             password: '1111', balance_cents: 1250)
+             password: '1111', balance: 50)
 
 
 User.create!(first_name: 'Ana', last_name: 'Maria', acc_number: '54321',
-             password: '1111', balance_cents: 5000, user_type: 2)
+             password: '1111', balance: 1000, user_type: 2)
+
+User.create!(first_name: 'Ana', last_name: 'Maria', acc_number: '22222',
+             password: '1111', balance: 1000, user_type: 2)

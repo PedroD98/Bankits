@@ -1,14 +1,18 @@
-<div>
-  <% if @user.balance < 0 && @user.vip? %>
-    <p class="text-muted"><%= t('.bank_interest_message')%></p>
-  <% end %>
-  <h2 class="<%= balance_text_color_class(@user.balance) %>">
+<% if current_user.vip? && current_user.balance.negative? %>
+
+  <div class="alert alert-warning d-flex align-items-center">
+    <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+    <div>
+      <%= t('.bank_interest_message') %>
+    </div>
+  </div>
+
+<% end %>
+
+<h2 class="<%= balance_text_color_class(@user.balance) %>">
     <%= t('.balance') %>: <%= @user.balance.format %>
-  </h2>
-  
-</div>
-
-
+</h2>
+<hr>
 <div class="row mt-4">
 
   <div class="col-md-3">

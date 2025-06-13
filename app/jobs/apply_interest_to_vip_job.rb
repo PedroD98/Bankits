@@ -9,7 +9,7 @@ class ApplyInterestToVipJob < ApplicationJob
 
     negative_balance_vips.each do |user|
       puts "Aplicando taxa de juros para o usário #{user.full_name} / #{user.acc_number}, com saldo #{user.balance.format}"
-      InterestService.call(vip_user: user)
+      InterestService.call(user: user)
     end
   end
 end
