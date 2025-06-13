@@ -21,7 +21,7 @@
   <div class="col-md-9">
     <h3 class="text-center">Extrato</h3>
     <% if @transactions.any? %>
-      <ul class="list-group">
+      <ul class="list-group list-group-striped">
         <% @transactions.each do |transaction| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <div>
@@ -35,10 +35,10 @@
         <% end %>
       </ul>
     <% else %>
-     <div class="text-center p-5">
+      <div class="text-center p-5">
         <h4><%= t('.no_transactions') %></h4>
         <p class="text-muted"><%= t('.start_suggestion') %></p>
-     </div>
+      </div>
     <% end %>
   </div>
 </div>

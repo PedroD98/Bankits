@@ -10,4 +10,5 @@ pt-BR:
         value: Valor
         description: Descrição
         processed_at: Data
+        scheduled_visit_date: Data de agendamento da visita
         transaction_type: Tipo de transação

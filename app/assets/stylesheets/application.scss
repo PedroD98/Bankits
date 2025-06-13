@@ -9,3 +9,9 @@
  * Consider organizing styles into separate files for maintainability.
  */
 @import "bootstrap";
+
+.list-group {
+  .list-group-item:nth-child(odd) {
+    background-color: #e3e6e9;
+  }
+}

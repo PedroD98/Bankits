@@ -2,6 +2,8 @@ pt-BR:
   layouts:
     application:
       hello: Olá
+      transfer_monye: Fazer transferência
+      schedule_manager_visit: Visita gerencial
       sign_out: Sair
   statements:
     index:
@@ -12,3 +14,10 @@ pt-BR:
       withdraw: Sacar
       no_transactions: Você ainda não possui transações
       start_suggestion: Que tal começar com um depósito?
+  transactions:
+    new_manager_visit:
+      scheduled_manager_visit: Agendamento de visita gerencial
+      manager_visit_fee: Uma taxa de R$ 50,00 será debitada da sua conta
+      scheduled_visit_date: Data da visita
+      cancel_visit: Cancelar
+      confirm_visit: Confirmar agendamento

@@ -11,8 +11,9 @@ class Transaction < ApplicationRecord
   }
   monetize :value_cents
 
-  validates :counterparty, presence: true, if: -> { transfer_sent? || transfer_received? }
   validates :description, :processed_at, presence: true
+  validates :scheduled_visit_date, presence: true, if: :manager_visit?
+  validates :counterparty, presence: true, if: -> { transfer_sent? || transfer_received? }
   validates :value_cents, numericality: { greater_than: 0 }, if: -> { deposit? || transfer_received? }
   validates :value_cents, numericality: { less_than: 0 }, if: -> { withdraw? || transfer_sent? || fee? || manager_visit? }
 end

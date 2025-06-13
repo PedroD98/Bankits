@@ -3,8 +3,7 @@ class TransactionsController < ApplicationController
   before_action :set_current_user
 
   def deposit
-    deposit_service = DepositService.new(user: current_user,
-                                         value_param: params.require(:transaction)[:value])
+    deposit_service = DepositService.new(user: current_user, value_param: sanitized_value_params)
 
     if deposit_service.call
       redirect_to root_path, notice: t('transactions.deposit.success')
@@ -18,7 +17,7 @@ class TransactionsController < ApplicationController
   end
 
   def withdraw
-    withdraw_service = WithdrawService.new(user: @user, value_param: params.require(:transaction)[:value])
+    withdraw_service = WithdrawService.new(user: @user, value_param: sanitized_value_params)
 
     if withdraw_service.call
       redirect_to root_path, notice: t('transactions.withdraw.success')
@@ -31,9 +30,34 @@ class TransactionsController < ApplicationController
     end
   end
 
-  private
+  def new_manager_visit
+    @manager_visit_transaction = Transaction.new
+  end
 
+  def create_manager_visit
+    manager_visit_service = ManagerVisitService.new(user: @user, scheduled_visit_date_param: sanitized_schedule_visit_params)
+
+    if manager_visit_service.call
+      redirect_to root_path, notice: t('transactions.create_manager_visit.success')
+    else
+      flash.now[:alert] = t('transactions.create_manager_visit.error')
+      @manager_visit_transaction = manager_visit_service.manager_visit_transaction
+      render :new_manager_visit, status: :unprocessable_entity
+    end
+  end
+
+  private
   def set_current_user
     @user = current_user
+  end
+
+  def sanitized_schedule_visit_params
+    permitted_params = params.require(:transaction).permit(:scheduled_visit_date)
+    permitted_params[:scheduled_visit_date]
+  end
+
+  def sanitized_value_params
+    permitted_params = params.require(:transaction).permit(:value)
+    permitted_params[:value]
   end
 end

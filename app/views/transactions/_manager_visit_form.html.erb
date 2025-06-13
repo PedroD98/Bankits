@@ -1,0 +1,26 @@
+<%= form_with model: @manager_visit_transaction,
+              url: manager_visit_path,
+              id: "manager_visit_form",
+              data: { turbo_frame: "_top" } do |f| %>
+
+  <div class="modal-header justify-content-center">
+    <h4 class="modal-title"><%= t('transactions.new_manager_visit.scheduled_manager_visit') %></h4>
+  </div>
+
+  <div class="modal-body">
+    <% if alert %>
+        <p class="alert alert-danger text-center"><%= alert %></p>
+    <% end %>
+    
+    <%= render 'shared/transaction_form_errors', object: f.object %>
+    <h5 class="mb-4 text-danger"><%= t('transactions.new_manager_visit.manager_visit_fee') %></h5>
+
+    <%= f.label :scheduled_visit_date, class: "form-label"%>
+    <%= f.date_field :scheduled_visit_date, class: 'form-control'%>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" data-action="click->modal#close" class="btn btn-secondary"><%= t('transactions.new_manager_visit.cancel_visit') %></button>
+    <%= f.submit t('transactions.new_manager_visit.confirm_visit'), class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -39,8 +39,15 @@ RSpec.describe Transaction, type: :model do
   end
 
   describe 'withdraw validations' do
-    subject { build(:transaction, transaction_type: :withdraw) }
+    subject { build(:transaction, :withdraw) }
     it { should validate_numericality_of(:value_cents).is_less_than(0) }
     it { should_not validate_presence_of(:counterparty) }
+  end
+
+  describe 'manager_visit validations' do
+    subject { build(:transaction, :manager_visit) }
+    it { should validate_numericality_of(:value_cents).is_less_than(0) }
+    it { should_not validate_presence_of(:counterparty) }
+    it { should validate_presence_of(:scheduled_visit_date) }
   end
 end
