@@ -7,6 +7,14 @@
 - [Configuração](#configuração)
 - [Testes](#testes)
 - [Funcionalidades](#funcionalidades)
+  - [Cadastro de conta](#cadastro-de-conta)
+  - [Login](#login)
+  - [Visualização de extrato e saldo](#visualização-de-extrato-e-saldo)
+  - [Depósito](#depósito)
+  - [Saque](#saque)
+  - [Transferência](#transferência)
+  - [Agendamento gerencial](#visita-gerencial)
+  - [Taxa de juros](#taxa-de-juros)
   
 ## Tecnologias
 
@@ -93,15 +101,19 @@ Para gerar o relatório de cobertura de testes, abra o arquivo coverage/index.ht
 ## Login
 Para acessar sua conta, basta preencher o formulário na tela de login com suas credênciais.
 
+
 ***
 
 
 ## Visualização de extrato e saldo
+
 Após realizar o login, o usuário será redirecionado para a tela principal da aplicação. Um dashboard exibirá todas as informações necessárias. Os formulários para depósito, saque e transferência também estarão presentes na tela, assim como uma lista detalhando todas as transações do usuário.
 
 Caso não tenha feito uma transação, o usuário verá uma mensagem comunicando que o extrato está vazio.
 
 Um usuário VIP terá um ícone único na navbar, para facilitar a diferenciação entre tipos de usuários.
+
+***
 
 ## Depósito
 Inserindo um valor válido e clicando em "Depositar", uma transação será feita para a conta do usuário, e seu saldo será atualizado.
@@ -121,7 +133,8 @@ Inserindo um valor válido e clicando em "Depositar", uma transação será feit
 ***
 
 
-## Transferir
+## Transferência
+
 Enviar o formulário de transferência com valores válidos gerará 3 transações, são elas:
 - Transferência enviada: o valor será debitado da conta do usuário remetente;
 - Taxa de transferência: será cobrado uma taxa para a transferência, que também será debitada da conta do remetente:
