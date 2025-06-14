@@ -124,7 +124,7 @@ Inserindo um valor válido e clicando em "Depositar", uma transação será feit
 
 ## Saque
 
-Inserindo um valor válido e clicando em "Depositar", uma transação será feita para a conta do usuário, e seu saldo será atualizado.
+Inserindo um valor válido e clicando em "Sacar", uma transação será feita para a conta do usuário, e seu saldo será atualizado.
 - Validações:
    - O valor inserido no campo não pode ser negativo;
    - Para usuários regulares, não é possível sacar um valor maior do que o saldo atual;
@@ -137,14 +137,14 @@ Inserindo um valor válido e clicando em "Depositar", uma transação será feit
 
 Enviar o formulário de transferência com valores válidos gerará 3 transações, são elas:
 - Transferência enviada: o valor será debitado da conta do usuário remetente;
-- Taxa de transferência: será cobrado uma taxa para a transferência, que também será debitada da conta do remetente:
+- Taxa de transferência: também será debitada da conta do remetente
   - Para usuários regulares, a taxa sempre será de R$ 8,00;
-  - Para usuários vip, a taxa será 0,8% em cima do valor da transferência.
+  - Para usuários VIP, a taxa será 0,8% em cima do valor da transferência.
 - Transferência recebida: o destinatário receberá o valor transferido.
 
 Algumas validações precisam ser seguidas:
-- O valor máximo de transferência para usuários regulares é de R$ 1000,00 (sem limites para vip)
-- O valor inserido no campo deve ser positivo
+- O valor máximo de transferência para usuários regulares é de R$ 1000,00 (sem limites para VIP);
+- O valor inserido no campo deve ser positivo;
 - O número da conta inserido no campo deve refletir uma conta existente;
 - Não é possível transferir para a própria conta.
 
@@ -152,7 +152,7 @@ Algumas validações precisam ser seguidas:
 
 
 ## Visita gerencial
-Apenas usuários VIP conseguiram ver o botão de "Agendamento Gerencial", localizado na navbar. Ao clicar no botão, uma janela modal aparecerá pedindo para que o usuário insira a data para o agendamento da visita.
+Apenas usuários VIP conseguirão ver o botão de "Agendamento Gerencial", localizado na navbar. Ao clicar no botão, uma janela modal aparecerá pedindo para que o usuário insira a data para o agendamento da visita.
 
 Ao concluir o processo, um valor de R$ 50,00 será debitado da conta do usuário.
 
@@ -164,5 +164,5 @@ Ao concluir o processo, um valor de R$ 50,00 será debitado da conta do usuário
 ## Taxa de juros
 Quando um usuário VIP está negativado, a cor do saldo fica em vermelho vivo, e uma mensagem de alerta informando sobre a taxa de juros é exibida no topo da página.
 
-A taxa será de 0,1% em cima do valor atual do saldo, e acontecerá a cada minuto até que o usuário regularize seu saldo, seja com trasnferência recebida ou depósito.
+A taxa de juros será de 0,1% em cima do valor atual do saldo, e será cobrada a cada minuto até que o usuário regularize seu saldo, seja com trasnferência recebida ou depósito.
 
